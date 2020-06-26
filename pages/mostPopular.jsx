@@ -1,14 +1,14 @@
 import React, { Fragment } from "react";
 import Layout from "../components/Layout";
 
-const Home = () => {
+const MostPopular = () => {
   return (
     <Fragment>
       <Layout>
-        <h1>Inicio</h1>
+        <h1>Most Popular</h1>
       </Layout>
     </Fragment>
   );
 };
 
-export default Home;
+export default MostPopular;

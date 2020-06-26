@@ -1,14 +1,13 @@
 import React, { Fragment } from "react";
-import Layout from "../components/Layout";
 
-const Home = () => {
+const Searching = () => {
   return (
     <Fragment>
       <Layout>
-        <h1>Inicio</h1>
+        <h1>Login</h1>
       </Layout>
     </Fragment>
   );
 };
 
-export default Home;
+export default Searching;

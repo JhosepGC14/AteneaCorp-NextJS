@@ -1,10 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import Link from "next/link";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
-import Search from "../ui/Search";
+import Search from "../../ui/Search/Search";
 import Navigation from "../Navigation";
-import Button from "../ui/Button";
+import Button from "../../ui/Button/Button";
+//firebase
+import { FirebaseContext } from "../../firebase";
 
 const ContainerHeader = styled.div`
   width: 95%;
@@ -16,7 +18,7 @@ const ContainerHeader = styled.div`
 `;
 
 const Logo = styled.p`
-  color: var(--orange);
+  color: var(--blue);
   font-size: 4rem;
   line-height: 0;
   font-weight: 700;
@@ -26,7 +28,8 @@ const Logo = styled.p`
 `;
 
 const Header = () => {
-  const user = false;
+  const { user, firebase } = useContext(FirebaseContext);
+  console.log(user);
   return (
     <header
       css={css`
@@ -40,10 +43,11 @@ const Header = () => {
             display: flex;
             align-items: center;
             width: 80%;
+            flex-wrap: wrap;
           `}
         >
           <Link href="/">
-            <Logo>ATENEA-HUNT</Logo>
+            <Logo>ATENEA CORP.</Logo>
           </Link>
           {/* Buscador Aqui */}
           <Search />
@@ -63,9 +67,16 @@ const Header = () => {
                   margin-right: 2rem;
                 `}
               >
-                Hello: Jhosep
+                Hello: {user.displayName}
               </span>
-              <Button bgColor="true">Log Out</Button>
+              <Button
+                bgColor="true"
+                onClick={() => {
+                  firebase.logOut();
+                }}
+              >
+                Log Out
+              </Button>
             </Fragment>
           ) : (
             <Fragment>

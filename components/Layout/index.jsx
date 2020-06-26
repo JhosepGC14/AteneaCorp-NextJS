@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import Header from "../Header";
+import Footer from "../Footer";
 import { Global, css } from "@emotion/core";
 import Head from "next/head";
 
@@ -12,7 +13,11 @@ const Layout = (props) => {
             --gray: #6f6f6f;
             --grayDark: #3d3d3d;
             --grayLight: #e1e1e1;
-            --orange: #da552f;
+            --blue: #2c47c8;
+            --darkBlue: #12289f;
+            --white: #ffffff;
+            --danger: #f8d7da;
+            --dangerText: #721c24;
           }
           html {
             font-size: 62.5%;
@@ -50,6 +55,8 @@ const Layout = (props) => {
       />
       <Head>
         <html lang="es" />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <title>.:Firebase and Next - Product Hunt:.</title>
         <link
           rel="stylesheet"
@@ -62,7 +69,14 @@ const Layout = (props) => {
         <link rel="stylesheet" href="/static/css/app.css" />
       </Head>
       <Header />
-      <main>{props.children}</main>
+      <main
+        css={css`
+          height: 100vh;
+        `}
+      >
+        {props.children}
+      </main>
+      <Footer />
     </Fragment>
   );
 };
