@@ -1,14 +1,17 @@
 import styled from "@emotion/styled";
 
 const Button = styled.a`
+  display: block;
   font-weight: 700;
   text-transform: uppercase;
   border: 1px solid var(--grayLight);
   border-radius: 5px;
   padding: 0.8rem 2rem;
-  margin-right: 1rem;
+  margin: 2rem auto;
   transition: 0.5s all;
-  background-color: ${(props) => (props.bgColor ? "var(--darkBlue)" : "white")};
+  text-align: center;
+  background-image: ${(props) =>
+    props.bgColor ? "linear-gradient(#6637eb, #6639ed)" : "white"};
   color: ${(props) => (props.bgColor ? "white" : "#000")};
   &:last-of-type {
     margin-right: 0;

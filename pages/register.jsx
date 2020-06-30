@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import Layout from "../components/Layout";
 import Router from "next/router";
 import { css } from "@emotion/core";
+import Section from "../ui/Section";
 import { Form, Camp, ButtonSubmit, Error } from "../ui/Form/Form";
 //validaciones
 import useValidation from "../hooks/useValidation";
@@ -41,7 +42,11 @@ const Register = () => {
   return (
     <Fragment>
       <Layout>
-        <Fragment>
+        <Section
+          css={css`
+            height: 100vh;
+          `}
+        >
           <h1
             css={css`
               text-align: center;
@@ -93,7 +98,7 @@ const Register = () => {
             <ButtonSubmit type="submit">Register</ButtonSubmit>
             {errorCreate && <Error>{errorCreate}</Error>}
           </Form>
-        </Fragment>
+        </Section>
       </Layout>
     </Fragment>
   );

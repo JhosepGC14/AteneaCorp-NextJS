@@ -40,7 +40,11 @@ const Login = () => {
   return (
     <Fragment>
       <Layout>
-        <Fragment>
+        <section
+          css={css`
+            height: 100vh;
+          `}
+        >
           <h1
             css={css`
               text-align: center;
@@ -79,7 +83,7 @@ const Login = () => {
             <ButtonSubmit type="submit">Login</ButtonSubmit>
             {errorCreate && <Error>{errorCreate}</Error>}
           </Form>
-        </Fragment>
+        </section>
       </Layout>
     </Fragment>
   );

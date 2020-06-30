@@ -7,6 +7,11 @@ const Form = styled.form`
   background-color: #f2f2f2;
   padding: 5rem;
   border-radius: 5px;
+  fieldset {
+    margin: 2rem 0;
+    border: 1px solid #e1e1e1;
+    font-size: 1.8rem;
+  }
 `;
 
 const Camp = styled.div`
@@ -15,19 +20,24 @@ const Camp = styled.div`
   align-items: center;
   label {
     flex: 0 0 150px;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   }
-  input {
+  input,
+  textarea {
     flex: 1;
     padding: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 1.4rem;
+  }
+  textarea {
+    height: 300px;
   }
 `;
 
 const ButtonSubmit = styled.button`
   display: block;
-  background-color: var(--darkBlue);
+  background-image: linear-gradient(#6637eb, #6639ed);
   width: 40%;
   margin: auto;
   padding: 1.5rem;

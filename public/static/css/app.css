@@ -10,3 +10,7 @@
 .bg-white {
   background-color: #fff;
 }
+
+.border-5 {
+  border-radius: 5px;
+}

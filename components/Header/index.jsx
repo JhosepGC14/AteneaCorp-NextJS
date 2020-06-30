@@ -29,7 +29,6 @@ const Logo = styled.p`
 
 const Header = () => {
   const { user, firebase } = useContext(FirebaseContext);
-  console.log(user);
   return (
     <header
       css={css`
@@ -42,7 +41,7 @@ const Header = () => {
           css={css`
             display: flex;
             align-items: center;
-            width: 80%;
+            width: 75%;
             flex-wrap: wrap;
           `}
         >
@@ -81,7 +80,14 @@ const Header = () => {
           ) : (
             <Fragment>
               <Link href="/login">
-                <Button bgColor="true">Login</Button>
+                <Button
+                  css={css`
+                    margin-right: 2rem;
+                  `}
+                  bgColor="true"
+                >
+                  Login
+                </Button>
               </Link>
               <Link href="/register">
                 <Button>Register</Button>

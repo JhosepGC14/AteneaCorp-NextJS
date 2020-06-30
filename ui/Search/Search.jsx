@@ -25,6 +25,9 @@ const ButtonSearch = styled.button`
   &hover {
     cursor: pointer;
   }
+  @media (max-width: 768px) {
+    right: -12.6rem;
+  }
 `;
 
 const Search = () => {
@@ -32,7 +35,7 @@ const Search = () => {
     <form
       action=""
       css={css`
-        width: 30%;
+        width: 32%;
         position: relative;
       `}
     >

@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 const StyledFooter = styled.footer`
   width: 100%;
   height: 80px;
-  background: var(--darkBlue);
+  background-image: linear-gradient(#6637eb, #6639ed);
   /* text-align: center; */
   color: var(--white);
   display: flex;

@@ -18,6 +18,7 @@ const Layout = (props) => {
             --white: #ffffff;
             --danger: #f8d7da;
             --dangerText: #721c24;
+            --textGray: #888;
           }
           html {
             font-size: 62.5%;
@@ -51,6 +52,9 @@ const Layout = (props) => {
           a {
             text-decoration: none;
           }
+          img {
+            max-width: 500px;
+          }
         `}
       />
       <Head>
@@ -71,7 +75,7 @@ const Layout = (props) => {
       <Header />
       <main
         css={css`
-          height: 100vh;
+          height: 100%;
         `}
       >
         {props.children}
