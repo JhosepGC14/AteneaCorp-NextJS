@@ -1,36 +1,13 @@
-import React, { Fragment, useEffect, useState, useContext } from "react";
+import React, { Fragment } from "react";
 import Layout from "../components/Layout";
 import ProdutcsDetail from "../components/ProductsDetail";
 import LoadingPage from "../components/LoadingPage";
 import Section from "../ui/Section";
 import { css } from "@emotion/core";
-import { FirebaseContext } from "../firebase";
+import useProducts from "../hooks/useProducts";
 
 const Home = () => {
-  const [products, saveProducts] = useState([]);
-
-  const { firebase } = useContext(FirebaseContext);
-
-  useEffect(() => {
-    const getProducts = () => {
-      firebase.db
-        .collection("products")
-        .orderBy("created", "desc")
-        .onSnapshot(manageSnapshot);
-    };
-    getProducts();
-  }, []);
-
-  function manageSnapshot(snapshot) {
-    const products = snapshot.docs.map((doc) => {
-      return {
-        id: doc.id,
-        ...doc.data(),
-      };
-    });
-    saveProducts(products);
-  }
-
+  const { products } = useProducts("created");
   if (Object.keys(products).length === 0) return <LoadingPage />;
 
   return (

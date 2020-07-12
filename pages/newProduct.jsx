@@ -1,7 +1,8 @@
 import React, { Fragment, useState, useContext } from "react";
 import Layout from "../components/Layout";
 import Section from "../ui/Section";
-import Router, { useRouter } from "next/router";
+import PageNotFound from "../components/PageNotFound";
+import { useRouter } from "next/router";
 import FileUploader from "react-firebase-file-uploader";
 import { css } from "@emotion/core";
 import { Form, Camp, ButtonSubmit, Error } from "../ui/Form/Form";
@@ -69,6 +70,7 @@ const NewProduct = () => {
         id: user.uid,
         name: user.displayName,
       },
+      liked: [],
     };
 
     //insertarlo en la base de datos
@@ -107,114 +109,118 @@ const NewProduct = () => {
   return (
     <Fragment>
       <Layout>
-        <Section
-          css={css`
-            height: 100%;
-          `}
-        >
-          <h1
+        {!user ? (
+          <PageNotFound />
+        ) : (
+          <Section
             css={css`
-              text-align: center;
-              margin-top: 5rem;
+              height: 100%;
             `}
           >
-            Create New Product
-          </h1>
-          <Form
-            onSubmit={handleSubmit}
-            noValidate
-            css={css`
-              max-width: 50%;
-            `}
-          >
-            <fieldset
+            <h1
               css={css`
-                margin-bottom: 10px;
+                text-align: center;
+                margin-top: 5rem;
               `}
             >
-              <legend>General Information</legend>
-              <Camp>
-                <label htmlFor="nameProduct">Name's Product:</label>
-                <input
-                  type="text"
-                  id="nameProduct"
-                  placeholder="Name Complete"
-                  name="nameProduct"
-                  value={nameProduct}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </Camp>
-              {error.nameProduct && <Error>{error.nameProduct}</Error>}
-
-              <Camp>
-                <label htmlFor="company">Company Name:</label>
-                <input
-                  type="text"
-                  id="company"
-                  placeholder="Company Name"
-                  name="company"
-                  value={company}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </Camp>
-              {error.company && <Error>{error.company}</Error>}
-
-              <Camp>
-                <label htmlFor="image">Imagen:</label>
-                <FileUploader
-                  accept="image/*"
-                  id="image"
-                  placeholder="Image"
-                  name="image"
-                  randomizeFilename
-                  storageRef={firebase.storage.ref("products")}
-                  onUploadStart={handleUploadStart}
-                  onUploadError={handleUploadError}
-                  onUploadSuccess={handleUploadSuccess}
-                  onProgress={handleProgress}
-                />
-              </Camp>
-
-              <Camp>
-                <label htmlFor="url">URL:</label>
-                <input
-                  type="url"
-                  id="url"
-                  placeholder="URL"
-                  name="url"
-                  value={url}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </Camp>
-              {error.url && <Error>{error.url}</Error>}
-            </fieldset>
-
-            <fieldset
+              Create New Product
+            </h1>
+            <Form
+              onSubmit={handleSubmit}
+              noValidate
               css={css`
-                margin-bottom: 30px;
+                max-width: 50%;
               `}
             >
-              <legend>About your Product</legend>
-              <Camp>
-                <label htmlFor="Description">Description:</label>
-                <textarea
-                  id="description"
-                  placeholder="Description"
-                  name="description"
-                  value={description}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </Camp>
-              {error.description && <Error>{error.description}</Error>}
-            </fieldset>
-            <ButtonSubmit type="submit">Create Product</ButtonSubmit>
-            {errorCreate && <Error>{errorCreate}</Error>}
-          </Form>
-        </Section>
+              <fieldset
+                css={css`
+                  margin-bottom: 10px;
+                `}
+              >
+                <legend>General Information</legend>
+                <Camp>
+                  <label htmlFor="nameProduct">Name's Product:</label>
+                  <input
+                    type="text"
+                    id="nameProduct"
+                    placeholder="Name Complete"
+                    name="nameProduct"
+                    value={nameProduct}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Camp>
+                {error.nameProduct && <Error>{error.nameProduct}</Error>}
+
+                <Camp>
+                  <label htmlFor="company">Company Name:</label>
+                  <input
+                    type="text"
+                    id="company"
+                    placeholder="Company Name"
+                    name="company"
+                    value={company}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Camp>
+                {error.company && <Error>{error.company}</Error>}
+
+                <Camp>
+                  <label htmlFor="image">Imagen:</label>
+                  <FileUploader
+                    accept="image/*"
+                    id="image"
+                    placeholder="Image"
+                    name="image"
+                    randomizeFilename
+                    storageRef={firebase.storage.ref("products")}
+                    onUploadStart={handleUploadStart}
+                    onUploadError={handleUploadError}
+                    onUploadSuccess={handleUploadSuccess}
+                    onProgress={handleProgress}
+                  />
+                </Camp>
+
+                <Camp>
+                  <label htmlFor="url">URL:</label>
+                  <input
+                    type="url"
+                    id="url"
+                    placeholder="URL"
+                    name="url"
+                    value={url}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Camp>
+                {error.url && <Error>{error.url}</Error>}
+              </fieldset>
+
+              <fieldset
+                css={css`
+                  margin-bottom: 30px;
+                `}
+              >
+                <legend>About your Product</legend>
+                <Camp>
+                  <label htmlFor="Description">Description:</label>
+                  <textarea
+                    id="description"
+                    placeholder="Description"
+                    name="description"
+                    value={description}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </Camp>
+                {error.description && <Error>{error.description}</Error>}
+              </fieldset>
+              <ButtonSubmit type="submit">Create Product</ButtonSubmit>
+              {errorCreate && <Error>{errorCreate}</Error>}
+            </Form>
+          </Section>
+        )}
       </Layout>
     </Fragment>
   );

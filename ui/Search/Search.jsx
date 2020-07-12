@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
+import Router from "next/router";
 
 const InputText = styled.input`
   border: 1px solid var(--grayLight);
@@ -31,6 +32,18 @@ const ButtonSearch = styled.button`
 `;
 
 const Search = () => {
+  const [search, saveSearch] = useState("");
+
+  const searchProduct = (e) => {
+    e.preventDefault();
+    if (search.trim() === "") return;
+    //redireccionar al usuario a la page de seach
+    Router.push({
+      pathname: "/searching",
+      query: { q: search },
+    });
+  };
+
   return (
     <form
       action=""
@@ -38,8 +51,13 @@ const Search = () => {
         width: 32%;
         position: relative;
       `}
+      onSubmit={searchProduct}
     >
-      <InputText type="text" placeholder="Search Products" />
+      <InputText
+        type="text"
+        placeholder="Search Products"
+        onChange={(e) => saveSearch(e.target.value)}
+      />
       <ButtonSearch type="submit">Search</ButtonSearch>
     </form>
   );

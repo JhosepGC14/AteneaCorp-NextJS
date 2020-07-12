@@ -3,14 +3,23 @@ import { css } from "@emotion/core";
 
 const PageNotFound = () => {
   return (
-    <h1
+    <section
       css={css`
-        margin-top: 5rem;
-        text-align: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       `}
     >
-      Page Not Found, Product Doesn't Exist
-    </h1>
+      <h1
+        css={css`
+          margin-top: 5rem;
+          text-align: center;
+        `}
+      >
+        Page Not Found or Product Doesn't Exist
+      </h1>
+    </section>
   );
 };
 
